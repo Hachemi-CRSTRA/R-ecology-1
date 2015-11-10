@@ -13,35 +13,27 @@ minutes: 30
 
 ## Installing packages
 
-Packages can be installed using the function [`install.packages`](https://stat.ethz.ch/R-manual/R-devel/library/utils/html/install.packages.html) with a single argument being the name of the package you need. Here we will install two packages: 
-- [RColorBrewer](https://cran.r-project.org/web/packages/RColorBrewer/index.html), useful to paint plots
+Packages can be installed using the function [`install.packages`](https://stat.ethz.ch/R-manual/R-devel/library/utils/html/install.packages.html) with a single argument being the name of the package you need. Here we will install a package: 
 - [VennDiagram](https://cran.r-project.org/web/packages/VennDiagram/index.html), to make Venn diagrams
 
-```
-install.packages("RColorBrewer")
-```
 If the installation is succesful we will be able to load the package in the workspace: 
 
 ```
-library(RColorBrewer)
+install.packages("VennDiagram")
+library(VennDiagram)
 ```
 
 Problems? ...sure! 
 If you do not have super-user privileges you might not be able to install the package, however you can still do a temporary installation that will create a temporary folder: 
 
 ```
-tmp.install.packages("RColorBrewer")
+tmp.install.packages("VennDiagram")
 ```        
-Similarly, we can install and load `VennDiagram`: 
 
-```
-install.packages('VennDiagram') 
-library(VennDiagram)
-```
 Take some time to read the [VennDiagram reference manual](https://cran.r-project.org/web/packages/VennDiagram/VennDiagram.pdf) before to start. 
 
 
-##  Make a venn diagram by command line 
+##  Make a Venn diagram by command line 
 
 We will use the data from an experiment of differential gene expression analysis. In this type of experiments the sets of gene expressed in two different conditions are compared to identify differences. The result is a list of differentially expressed genes. 
 
@@ -156,7 +148,7 @@ OUTPUT: a jpg image
 We will download a file containing organisms name associated to a certain annotation of a non-model organism. 
 
 ```
-download.file("http://figshare.com/download/file/2433883, "organisms.txt")
+download.file("http://figshare.com/download/file/2433883", "organisms.txt")
 ```
 
 Suggestions:
@@ -203,7 +195,6 @@ Write a script and run it from command line. give in input: file name, plot name
 
 Solution
 
-		library(RColorBrewer)
 		args <- commandArgs(trailingOnly = TRUE)
 		
 		--Stores in the matrix the table give in input
@@ -217,7 +208,8 @@ Solution
 		jpeg(args[2], width = 1024, height = 768, pointsize = 12, quality= 100, unit = "px") 
 		
 		--Creates a color vector to use to color the bars
-		color_vector <- colorRampPalette(brewer.pal(9,"Set1"),bias=1 )( 20 )
+		color_vector <- rainbow(20)
+		
 		--Creates the plot
 		barplot(values, col=color_vector, main=args[3], xlab=args[4], ylab=args[5])
 		

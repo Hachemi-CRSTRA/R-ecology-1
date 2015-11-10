@@ -128,8 +128,8 @@ The syntax is usually:
 ```
 R CMD BATCH --no-save --no-restore '--args  <parameters>' myscript.R
 ```
-The `--no-save` means XXXXX 
-The `--no-restore` indicates XXXXX 
+The `--no-save` causes R not to save the workspace upon exiting, you can change the behavior by using –save 
+The `--no-restore` causes R not to look for a default .RData file, you can change that to –restore if you have objects that R needs and you generated it before
 
 In our case we will type: 
 ```
